@@ -936,11 +936,14 @@
       (split-qname qname)
     (attribute* prefix lname value qname)))
 
-(defun attribute* (prefix lname value &optional qname)
+(defun attribute* (prefix lname value &optional qname (specified-p T))
   "@arg[prefix]{Namespace prefix, a string.}
    @arg[lname]{Local name, a string.}
    @arg[value]{Any value understood by @fun{unparse-attribute}, in particular
      strings.}
+   @arg[qname]{Qualified name, a string.}
+   @arg[specified-p]{when non nil indicates that an attribute was specified
+     (in source) rather than default }
    @return{undocumented}
 
    Collects an attribute for the start tag that is currently being written.
@@ -962,7 +965,8 @@
 	   :local-name lname
 	   :qname (or qname
 		      (if prefix (concatenate 'rod prefix #":" lname) lname))
-	   :value (rod value))
+	   :value (rod value)
+	   :specified-p specified-p)
 	  (cdr *current-element*))))
 
 (defun cdata (data)
