@@ -141,7 +141,8 @@
    #:map-node-map
    #:do-node-map
    #:create-document
-   #:map-document))
+   #:map-document
+   #:walk))
 
 (defclass dom:node () ())
 (defclass dom:document (dom:node) ())
